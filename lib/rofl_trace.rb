@@ -13,6 +13,15 @@ module RoflTrace
     return
   end
 
+  #enable vm wide silent tracing
+  def rofl_enable_silent_trace event_regex = /^(call)/
+    #this is the Kernel::set_trace_func that we overwrite
+    trace_func = Proc.new do |event, file, line, id, binding, classname|
+    end
+    set_trace_func trace_func
+    return
+  end
+
   #disable vm wide tracing
   def rofl_disable_trace
     set_trace_func nil

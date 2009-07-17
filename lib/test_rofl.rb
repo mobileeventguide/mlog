@@ -16,7 +16,7 @@ class Test
     other_method
   end
   def other_method
-    puts "puts git other method called"
+    ilog "other method called"
   end
 end
 

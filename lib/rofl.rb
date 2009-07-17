@@ -1,7 +1,8 @@
 require 'logger'
-
+require 'rofl_trace'
 #little happy logger module
 module Rofl
+  include RoflTrace
 
   attr_accessor :debugname,:logger
   
@@ -17,39 +18,39 @@ module Rofl
       @tracing = false
       #enable tracing
       if @tracing
-        require 'rofl_trace'
-        include RoflTrace
-        rofl_enable_trace
+        rofl_enable_silent_trace
       end
     end
   end
   #error message
   def elog text="error" 
     rofl_logger_check #check if logger is setup
-    @logger.error "#{@debugname}.#{rofl_meth_trace}: #{text.to_s}"
+    @logger.error "#{@debugname}.#{rofl_meth_trace.to_s}: #{text.to_s}"
   end
   #warning
   def wlog text="warning"
     rofl_logger_check #check if logger is setup
-    @logger.warning "#{@debugname}.#{rofl_meth_trace}: #{text.to_s}"
+    @logger.warning "#{@debugname}.#{rofl_meth_trace.to_s}: #{text.to_s}"
   end
   #info message
   def ilog text="info"
     rofl_logger_check #check if logger is setup
-    @logger.info "#{@debugname}.#{rofl_meth_trace}: #{text.to_s}"
+    @logger.info "#{@debugname}.#{rofl_meth_trace.to_s}: #{text.to_s}"
   end
   #debug message
   def dlog text="debug"
     rofl_logger_check #check if logger is setup
-    @logger.debug "#{@debugname}.#{rofl_meth_trace}: #{text.to_s}"
+    @logger.debug "#{@debugname}.#{rofl_meth_trace.to_s}: #{text.to_s}"
   end
   #get method call trace
   def rofl_meth_trace
+    last_meth_name = "notrace"
     skip = 2 #indicates how many items we skip in the execution stack trace
     call_trace = caller(skip)
-    last_meth = call_trace[0][/\`.*?\'/]
-    last_meth_name = "notrace"
-    last_meth_name = last_meth.delete("\`").delete("\'") unless last_meth.nil?
+    regexp = /\`.*?\'/
+    last_meth = call_trace[0][regexp]
+    last_meth_name = last_meth.delete("\`") unless last_meth.nil?
+    last_meth_name = last_meth_name.delete("\'") unless last_meth_name.nil?
     return last_meth_name
   end
   #check if we or an object are ready to rofl
