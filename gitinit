@@ -1,0 +1,9 @@
+  mkdir rofl
+  cd rofl
+  git init
+  touch README
+  git add README
+  git commit -m 'first commit'
+  git remote add origin git@github.com:pangdudu/rofl.git
+  git push origin master
+

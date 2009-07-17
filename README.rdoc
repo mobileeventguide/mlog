@@ -1,0 +1,33 @@
+= ROFL
+
+My little logger wrapper. Will give you easy access to logger functions with
+class and caller method info.
+
+rofl,lol.
+
+== Installation
+
+  sudo gem install pangdudu-rofl --source=http://gems.github.com
+  
+== Usage
+
+look at the test_rofl.rb or simply do this:
+
+  require 'rofl'
+  include Rofl
+  
+you can than use the methods: elog,wlog,ilog,dlog
+
+where elog is like: logger.error
+      wlog is like: logger.warning
+      ilog is like: logger.info
+      dlog is like: logger.debug
+
+
+== Rule the universe! 
+
+Log,log,log.
+
+== License
+
+GPL -> http://www.gnu.org/licenses/gpl.txt
