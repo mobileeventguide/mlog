@@ -13,6 +13,7 @@ rofl,lol.
 
 look at the test_rofl.rb or simply do this:
 
+  require 'rubygems'
   require 'rofl'
   include Rofl
   
