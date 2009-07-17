@@ -12,9 +12,10 @@ Gem::Specification.new do |s|
   s.email = %q{pangdudu@github}
   s.executables = ["rofl"]
   s.extra_rdoc_files = ["README.rdoc"]
-  s.files = ["README.rdoc", "lib/rofl.rb", "lib/rofl_trace.rb", "lib/test_rofl.rb"]
+  s.files = ["README.rdoc", "bin/rofl", "lib/rofl.rb", "lib/rofl_trace.rb", "lib/test_rofl.rb"]
   s.has_rdoc = true
   s.homepage = %q{http://github.com/pangdudu/rofl}
+  s.rubyforge_project = %q{rofl}
   s.require_paths = ["lib"]
   s.rubygems_version = %q{1.3.1}
   s.summary = %q{rofl! peace.}
