@@ -48,7 +48,8 @@ module Rofl
     skip = 2 #indicates how many items we skip in the execution stack trace
     call_trace = caller(skip)
     last_meth = call_trace[0][/\`.*?\'/]
-    last_meth_name = last_meth.delete("\`").delete("\'") #what was the right string method for this?
+    last_meth_name = "notrace"
+    last_meth_name = last_meth.delete("\`").delete("\'") unless last_meth.nil?
     return last_meth_name
   end
   #check if we or an object are ready to rofl
