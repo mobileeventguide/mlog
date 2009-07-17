@@ -18,10 +18,14 @@ look at the test_rofl.rb or simply do this:
   
 you can than use the methods: elog,wlog,ilog,dlog
 
-where elog is like: logger.error
-      wlog is like: logger.warning
-      ilog is like: logger.info
-      dlog is like: logger.debug
+where elog is like: 
+      logger.error (text if you like)
+wlog is like: 
+      logger.warning (text if you like)
+ilog is like: 
+      logger.info (text if you like) 
+dlog is like: 
+      logger.debug (text if you like)
 
 
 == Rule the universe! 
