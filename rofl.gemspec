@@ -1,12 +1,12 @@
 Gem::Specification.new do |s|
   s.name = %q{rofl}
-  s.version = "0.1.2"
+  s.version = "0.1.3"
 
   s.specification_version = 2 if s.respond_to? :specification_version=
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["pangdudu"]
-  s.date = %q{2009-07-17}
+  s.date = %q{2009-07-26}
   s.default_executable = %q{rofl}
   s.description = %q{My logger wrapper, includes funkiness.}
   s.email = %q{pangdudu@github}

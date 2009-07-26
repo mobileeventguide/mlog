@@ -30,7 +30,7 @@ module Rofl
   #warning
   def wlog text="warning"
     rofl_logger_check #check if logger is setup
-    @logger.warning "#{@debugname}.#{rofl_meth_trace.to_s}: #{text.to_s}"
+    @logger.warn "#{@debugname}.#{rofl_meth_trace.to_s}: #{text.to_s}"
   end
   #info message
   def ilog text="info"
