@@ -1,4 +1,5 @@
-#this module supplies useful trace output for the logger
+#= this module supplies useful trace output for debugging fun!
+
 module RoflTrace
   #enable vm wide tracing
   def rofl_enable_trace event_regex = /^(call)/
