@@ -22,26 +22,40 @@ module Rofl
       end
     end
   end
+  
+  #set the debug level
+  def rofl_log_level level=""
+    @logger.level = Logger::DEBUG if level.eql? "debug"
+    @logger.level = Logger::INFO if level.eql? "info"
+    @logger.level = Logger::WARN if level.eql? "warning"
+    @logger.level = Logger::ERROR if level.eql? "error"
+    puts "ROFL-LOG-LEVEL: #{@logger.level}" 
+  end
+  
   #error message
   def elog text="error" 
     rofl_logger_check #check if logger is setup
     @logger.error "#{@debugname}.#{rofl_meth_trace.to_s}: #{text.to_s}"
   end
+  
   #warning
   def wlog text="warning"
     rofl_logger_check #check if logger is setup
     @logger.warn "#{@debugname}.#{rofl_meth_trace.to_s}: #{text.to_s}"
   end
+  
   #info message
   def ilog text="info"
     rofl_logger_check #check if logger is setup
     @logger.info "#{@debugname}.#{rofl_meth_trace.to_s}: #{text.to_s}"
   end
+  
   #debug message
   def dlog text="debug"
     rofl_logger_check #check if logger is setup
     @logger.debug "#{@debugname}.#{rofl_meth_trace.to_s}: #{text.to_s}"
   end
+  
   #get method call trace
   def rofl_meth_trace
     last_meth_name = "notrace"
@@ -53,6 +67,7 @@ module Rofl
     last_meth_name = last_meth_name.delete("\'") unless last_meth_name.nil?
     return last_meth_name
   end
+  
   #check if we or an object are ready to rofl
   def rofl? object=self
     has_rofl = (defined? object.rofl?).eql? "method"
@@ -60,7 +75,9 @@ module Rofl
     return has_rofl
   end
 end
+
 #finally we just include ourselves, a little dirty ... what the hell :)
 include Rofl
+
 #and check, if we're ready to go
 rofl_logger_check

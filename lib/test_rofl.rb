@@ -21,4 +21,5 @@ class Test
 end
 
 test = Test.new 
+test.rofl_log_level "warning"
 test.call_hello_world
