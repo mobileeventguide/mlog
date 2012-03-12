@@ -3,7 +3,15 @@ module MLog
   
   # q&d config for additional loggers
   class Configuration
-    self.log_paths = {}
+    @@log_paths = {}
+
+    def self.log_paths
+      @@log_paths
+    end
+
+    def self.add_log_path key, log_path
+      @@log_paths[key] = log_path
+    end
   end
 
   attr_accessor :mlog_debugname, :mlogs
