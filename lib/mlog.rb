@@ -73,7 +73,7 @@ module MLog
   #get method call trace
   def mlog_meth_trace
     last_meth_name = "notrace"
-    skip = 2 #indicates how many items we skip in the execution stack trace
+    skip = 3 #indicates how many items we skip in the execution stack trace
     call_trace = caller(skip)
     regexp = /\`.*?\'/
       last_meth = call_trace[0][regexp]
