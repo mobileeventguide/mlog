@@ -49,25 +49,25 @@ module MLog
   #error message
   def elog text="error" 
     mlog_logger_check #check if logger is setup
-    @mlogs.each {|k, ml| ml.error "[#{Time.now}]#{@debugname}.#{mlog_meth_trace.to_s}: #{text.to_s}"}
+    @mlogs.each {|k, ml| ml.error "[#{Time.now}] #{@debugname}.#{mlog_meth_trace.to_s}: #{text.to_s}"}
   end
 
   #warning
   def wlog text="warning"
     mlog_logger_check #check if logger is setup
-    @mlogs.each {|k, ml| ml.warn "[#{Time.now}]#{@debugname}.#{mlog_meth_trace.to_s}: #{text.to_s}"}
+    @mlogs.each {|k, ml| ml.warn "[#{Time.now}] #{@debugname}.#{mlog_meth_trace.to_s}: #{text.to_s}"}
   end
 
   #info message
   def ilog text="info"
     mlog_logger_check #check if logger is setup
-    @mlogs.each {|k, ml| ml.info "[#{Time.now}]#{@debugname}.#{mlog_meth_trace.to_s}: #{text.to_s}"}
+    @mlogs.each {|k, ml| ml.info "[#{Time.now}] #{@debugname}.#{mlog_meth_trace.to_s}: #{text.to_s}"}
   end
 
   #debug message
   def dlog text="debug"
     mlog_logger_check #check if logger is setup
-    @mlogs.each {|k, ml| ml.debug "[#{Time.now}]#{@debugname}.#{mlog_meth_trace.to_s}: #{text.to_s}"}
+    @mlogs.each {|k, ml| ml.debug "[#{Time.now}] #{@debugname}.#{mlog_meth_trace.to_s}: #{text.to_s}"}
   end
 
   #get method call trace

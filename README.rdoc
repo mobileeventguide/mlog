@@ -21,6 +21,13 @@ ilog is like:
 dlog is like: 
       logger.debug "text if you like"
 
+=== Configuration
+  
+after require, just do some:
+
+  MLog::Configuration.add_log_path :file, Rails.root.join('log/mlog_test.log').to_s
+
+fyi: logs are rotated 'daily'
 
 === Tracing
 
