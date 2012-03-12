@@ -6,7 +6,7 @@ Gem::Specification.new do |s|
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["MEG"]
-  s.date = %q{2012-3-12}
+  s.date = %q{2012-03-12}
   s.default_executable = %q{mlog}
   s.description = %q{MEG logger wrapper, includes funkyness.}
   s.email = %q{mobileeventguide@github}
