@@ -12,7 +12,7 @@ Gem::Specification.new do |s|
   s.email = %q{mobileeventguide@github}
   s.executables = ["mlog"]
   s.extra_rdoc_files = ["README.rdoc"]
-  s.files = ["README.rdoc", "bin/mlog"]
+  s.files = ["README.rdoc", "bin/mlog.rb"]
   s.has_rdoc = true
   s.homepage = %q{http://github.com/mobileeventguide/mlog}
   #s.rubyforge_project = %q{rofl}
