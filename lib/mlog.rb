@@ -47,33 +47,37 @@ module MLog
   end
 
   #error message
-  def elog text="error" 
+  def elog text="error"
     mlog_logger_check #check if logger is setup
-    @mlogs.each {|k, ml| ml.error "[#{Time.now}] #{@debugname}.#{mlog_meth_trace.to_s}: #{text.to_s}"}
+    meth_trace = mlog_meth_trace.to_s
+    @mlogs.each {|k, ml| ml.error "[#{Time.now}] #{@debugname}.#{meth_trace}: #{text.to_s}"}
   end
 
   #warning
   def wlog text="warning"
     mlog_logger_check #check if logger is setup
-    @mlogs.each {|k, ml| ml.warn "[#{Time.now}] #{@debugname}.#{mlog_meth_trace.to_s}: #{text.to_s}"}
+    meth_trace = mlog_meth_trace.to_s
+    @mlogs.each {|k, ml| ml.warn "[#{Time.now}] #{@debugname}.#{meth_trace}: #{text.to_s}"}
   end
 
   #info message
   def ilog text="info"
     mlog_logger_check #check if logger is setup
-    @mlogs.each {|k, ml| ml.info "[#{Time.now}] #{@debugname}.#{mlog_meth_trace.to_s}: #{text.to_s}"}
+    meth_trace = mlog_meth_trace.to_s
+    @mlogs.each {|k, ml| ml.info "[#{Time.now}] #{@debugname}.#{meth_trace}: #{text.to_s}"}
   end
 
   #debug message
   def dlog text="debug"
     mlog_logger_check #check if logger is setup
-    @mlogs.each {|k, ml| ml.debug "[#{Time.now}] #{@debugname}.#{mlog_meth_trace.to_s}: #{text.to_s}"}
+    meth_trace = mlog_meth_trace.to_s
+    @mlogs.each {|k, ml| ml.debug "[#{Time.now}] #{@debugname}.#{meth_trace}: #{text.to_s}"}
   end
 
   #get method call trace
   def mlog_meth_trace
     last_meth_name = "notrace"
-    skip = 3 #indicates how many items we skip in the execution stack trace
+    skip = 2 #indicates how many items we skip in the execution stack trace
     call_trace = caller(skip)
     regexp = /\`.*?\'/
       last_meth = call_trace[0][regexp]
