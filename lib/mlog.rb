@@ -24,7 +24,7 @@ module MLog
       # add file loggers if they were configured
       unless MLog::Configuration.log_paths.blank?
         MLog::Configuration.log_paths.each do |key,log_path|
-          @mlogs[key] = Logger.new(log_path)
+          @mlogs[key] = Logger.new(log_path, 'daily')
         end
       end
       @mlogs.each {|k, ml| ml.level = Logger::DEBUG}

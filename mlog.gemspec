@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name = %q{mlog}
-  s.version = "0.3.3"
+  s.version = "0.3.4"
 
   s.specification_version = 3 if s.respond_to? :specification_version=
 
