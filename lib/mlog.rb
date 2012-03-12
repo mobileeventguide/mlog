@@ -7,7 +7,6 @@ module MLog
   def mlog_logger_check
     if @mlogs.nil?
       @debugname = self.class if @debugname.nil? #only used to inform the user
-      
       @mlogs = {:default => Logger.new(STDOUT)}
       @mlogs.each {|k, ml| ml.level = Logger::DEBUG}
       @mlogs.each {|k, ml| ml.datetime_format = "%H:%M:%S"} #useful for debugging
