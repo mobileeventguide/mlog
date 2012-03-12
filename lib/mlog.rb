@@ -125,6 +125,3 @@ end
   
 #finally we just include ourselves, a little dirty ... what the hell :)
 include MLog
-
-#and check, if we're ready to go
-mlog_logger_check
