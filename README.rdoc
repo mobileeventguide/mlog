@@ -1,20 +1,14 @@
-= ROFL
+= MLog
 
 My little logger wrapper. Will give you easy access to logger functions with
 class and caller method info.
 
-== Installation
-
-  sudo gem install pangdudu-rofl --source=http://gems.github.com
-  
 == Usage
 
 === Logging
 
-look at the test_rofl.rb or simply do this:
-
   require 'rubygems'
-  require 'rofl'
+  require 'mlog'
   
 you can then use the methods: elog,wlog,ilog,dlog
 
@@ -30,13 +24,11 @@ dlog is like:
 
 === Tracing
 
-If you take a look at 'lib/rofl_trace.rb' you'll discover some fun stuff. :)
-
 What might come in handy if you have no clue whats going on in somebodies code:
 
-  rofl_enable_trace
+  mlog_enable_trace
   #...some code
-  rofl_disable_trace
+  mlog_disable_trace
   
 You can encapsule code like that and then get flodded with all the 'calls'
 that happen in the vm.
@@ -45,10 +37,6 @@ that happen in the vm.
 
 
 Have phun kidz!  
-
-== Rule the universe! 
-
-Log,log,log.
 
 == License
 
