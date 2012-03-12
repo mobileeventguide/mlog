@@ -1,5 +1,10 @@
 module MLog
   require 'logger'
+  
+  # q&d config for additional loggers
+  class Configuration
+    self.log_paths = {}
+  end
 
   attr_accessor :mlog_debugname, :mlogs
 
@@ -8,6 +13,12 @@ module MLog
     if @mlogs.nil?
       @debugname = self.class if @debugname.nil? #only used to inform the user
       @mlogs = {:default => Logger.new(STDOUT)}
+      # add file loggers if they were configured
+      unless MLog::Configuration.log_paths.blank?
+        MLog::Configuration.log_paths.each do |key,log_path|
+          @mlogs[key] = Logger.new(log_path)
+        end
+      end
       @mlogs.each {|k, ml| ml.level = Logger::DEBUG}
       @mlogs.each {|k, ml| ml.datetime_format = "%H:%M:%S"} #useful for debugging
       @tracing = false
