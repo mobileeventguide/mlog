@@ -1,17 +1,16 @@
 module MLog
   require 'logger'
 
-  attr_accessor :debugname, :logger
+  attr_accessor :mlog_debugname, :mlogs
 
-  #check if there already is a logger, kind of a constructor
+  #setup default logger
   def mlog_logger_check
-    if @logger.nil?
-      #to stop output from getting messy, we use a logger
-      @logger = Logger.new(STDOUT)
-      @logger.level = Logger::DEBUG
-      #@logger.datetime_format = "%Y-%m-%d %H:%M:%S" #useful for logging to a file
-      @logger.datetime_format = "%H:%M:%S" #useful for debugging
+    if @mlogs.nil?
       @debugname = self.class if @debugname.nil? #only used to inform the user
+      
+      @mlogs = {:default => Logger.new(STDOUT)}
+      @mlogs.each {|k, ml| ml.level = Logger::DEBUG}
+      @mlogs.each {|k, ml| ml.datetime_format = "%H:%M:%S"} #useful for debugging
       @tracing = false
       #enable tracing
       if @tracing
@@ -22,35 +21,35 @@ module MLog
 
   #set the debug level
   def mlog_log_level level=""
-    @logger.level = Logger::DEBUG if level.eql? "debug"
-    @logger.level = Logger::INFO if level.eql? "info"
-    @logger.level = Logger::WARN if level.eql? "warning"
-    @logger.level = Logger::ERROR if level.eql? "error"
-    puts "LOG-LEVEL: #{@logger.level}" 
+    @mlogs.each {|k, ml| ml.level = Logger::DEBUG if level.eql? "debug"}
+    @mlogs.each {|k, ml| ml.level = Logger::INFO if level.eql? "info"}
+    @mlogs.each {|k, ml| ml.level = Logger::WARN if level.eql? "warning"}
+    @mlogs.each {|k, ml| ml.level = Logger::ERROR if level.eql? "error"}
+    @mlogs.each {|k, ml| puts "[#{k.to_s}] LOG-LEVEL: #{ml.level}"}
   end
 
   #error message
   def elog text="error" 
     mlog_logger_check #check if logger is setup
-    @logger.error "#{@debugname}.#{mlog_meth_trace.to_s}: #{text.to_s}"
+    @mlogs.each {|k, ml| ml.error "[#{Time.now}]#{@debugname}.#{mlog_meth_trace.to_s}: #{text.to_s}"}
   end
 
   #warning
   def wlog text="warning"
     mlog_logger_check #check if logger is setup
-    @logger.warn "#{@debugname}.#{mlog_meth_trace.to_s}: #{text.to_s}"
+    @mlogs.each {|k, ml| ml.warn "[#{Time.now}]#{@debugname}.#{mlog_meth_trace.to_s}: #{text.to_s}"}
   end
 
   #info message
   def ilog text="info"
     mlog_logger_check #check if logger is setup
-    @logger.info "#{@debugname}.#{mlog_meth_trace.to_s}: #{text.to_s}"
+    @mlogs.each {|k, ml| ml.info "[#{Time.now}]#{@debugname}.#{mlog_meth_trace.to_s}: #{text.to_s}"}
   end
 
   #debug message
   def dlog text="debug"
     mlog_logger_check #check if logger is setup
-    @logger.debug "#{@debugname}.#{mlog_meth_trace.to_s}: #{text.to_s}"
+    @mlogs.each {|k, ml| ml.debug "[#{Time.now}]#{@debugname}.#{mlog_meth_trace.to_s}: #{text.to_s}"}
   end
 
   #get method call trace
