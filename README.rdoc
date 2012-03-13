@@ -20,6 +20,8 @@ ilog is like:
       logger.info "text if you like" 
 dlog is like: 
       logger.debug "text if you like"
+alog is like (uses awesome_print):
+      logger.ap "text" or object or sth. awesome
 
 === Configuration
   

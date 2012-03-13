@@ -1,5 +1,6 @@
 module MLog
   require 'logger'
+  require 'awesome_print'
   
   # q&d config for additional loggers
   class Configuration
@@ -72,6 +73,13 @@ module MLog
     mlog_logger_check #check if logger is setup
     meth_trace = mlog_meth_trace.to_s
     @mlogs.each {|k, ml| ml.debug "[#{Time.now}] #{@debugname}.#{meth_trace}: #{text.to_s}"}
+  end
+
+  #debug message
+  def alog text="awesomeness"
+    mlog_logger_check #check if logger is setup
+    meth_trace = mlog_meth_trace.to_s
+    @mlogs.each {|k, ml| ml.debug "[#{Time.now}] #{@debugname}.#{meth_trace}: ap=>"; ml.ap text}
   end
 
   #get method call trace

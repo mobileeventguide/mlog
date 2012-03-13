@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name = %q{mlog}
-  s.version = "0.4"
+  s.version = "0.4.1"
 
   s.specification_version = 3 if s.respond_to? :specification_version=
 
@@ -17,4 +17,5 @@ Gem::Specification.new do |s|
   s.require_paths = ["lib"]
   s.rubygems_version = %q{1.8.15}
   s.summary = %q{mlog! peace.}
+  s.dependencies = ["awesome_print"]
 end
