@@ -17,5 +17,5 @@ Gem::Specification.new do |s|
   s.require_paths = ["lib"]
   s.rubygems_version = %q{1.8.15}
   s.summary = %q{mlog! peace.}
-  s.dependencies = ["awesome_print"]
+  s.add_dependency "awesome_print"
 end
