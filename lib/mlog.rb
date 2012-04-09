@@ -23,7 +23,7 @@ module MLog
       @debugname = self.class if @debugname.nil? #only used to inform the user
       @mlogs = {:default => Logger.new(STDOUT)}
       # add file loggers if they were configured
-      unless MLog::Configuration.log_paths.blank?
+      unless MLog::Configuration.log_paths.empty?
         MLog::Configuration.log_paths.each do |key,log_path|
           @mlogs[key] = Logger.new(log_path, 'daily')
         end
@@ -47,32 +47,13 @@ module MLog
     @mlogs.each {|k, ml| puts "[#{k.to_s}] LOG-LEVEL: #{ml.level}"}
   end
 
-  #error message
-  def elog text="error"
-    mlog_logger_check #check if logger is setup
-    meth_trace = mlog_meth_trace.to_s
-    @mlogs.each {|k, ml| ml.error "[#{Time.now}] #{@debugname}.#{meth_trace}: #{text.to_s}"}
-  end
-
-  #warning
-  def wlog text="warning"
-    mlog_logger_check #check if logger is setup
-    meth_trace = mlog_meth_trace.to_s
-    @mlogs.each {|k, ml| ml.warn "[#{Time.now}] #{@debugname}.#{meth_trace}: #{text.to_s}"}
-  end
-
-  #info message
-  def ilog text="info"
-    mlog_logger_check #check if logger is setup
-    meth_trace = mlog_meth_trace.to_s
-    @mlogs.each {|k, ml| ml.info "[#{Time.now}] #{@debugname}.#{meth_trace}: #{text.to_s}"}
-  end
-
-  #debug message
-  def dlog text="debug"
-    mlog_logger_check #check if logger is setup
-    meth_trace = mlog_meth_trace.to_s
-    @mlogs.each {|k, ml| ml.debug "[#{Time.now}] #{@debugname}.#{meth_trace}: #{text.to_s}"}
+  %w(error warn info debug).each do |log|
+    define_method "#{log[0]}log" do |text|
+      mlog_logger_check #check if logger is setup
+      @mlogs.each { |k, ml|
+        ml.send log.to_sym, "[#{Time.now}] #{@debugname}.#{mlog_meth_trace}: #{text || log}"
+      }
+    end
   end
 
   #debug message
