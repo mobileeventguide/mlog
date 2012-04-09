@@ -23,7 +23,7 @@ module MLog
       @debugname = self.class if @debugname.nil? #only used to inform the user
       @mlogs = {:default => Logger.new(STDOUT)}
       # add file loggers if they were configured
-      unless MLog::Configuration.log_paths.blank?
+      unless MLog::Configuration.log_paths.empty?
         MLog::Configuration.log_paths.each do |key,log_path|
           @mlogs[key] = Logger.new(log_path, 'daily')
         end
