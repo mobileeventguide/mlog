@@ -1,7 +1,7 @@
 module MLog
   require 'logger'
   require 'awesome_print'
-  
+
   # q&d config for additional loggers
   class Configuration
     @@log_paths = {}
@@ -88,7 +88,7 @@ module MLog
     trace_func = Proc.new do |event, file, line, id, binding, classname|
       if (event =~ event_regex)
         e = {:event=>event,:file=>file,:line=>line,:id=>id,:binding=>binding,:classname=>classname}
-        mlog_trace_event_callback e 
+        mlog_trace_event_callback e
       end
     end
     set_trace_func trace_func
@@ -111,10 +111,7 @@ module MLog
   #fires when there is a new trace event
   def mlog_trace_event_callback trace_event
     puts "new trace:"
-    trace_event.each { |n,t| puts "#{n}: #{t.inspect}"}  
+    trace_event.each { |n,t| puts "#{n}: #{t.inspect}"}
   end
-  
+
 end
-  
-#finally we just include ourselves, a little dirty ... what the hell :)
-include MLog
